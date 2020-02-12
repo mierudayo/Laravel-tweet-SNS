@@ -54,7 +54,8 @@ class UserCreateForm
     {
         $rules = [
             UserCreateForm::USER_NAME => [
-                'required'
+                'required',
+                'unique:users,name'
             ],
             UserCreateForm::PASSWORD => [
                 'required',
@@ -63,6 +64,7 @@ class UserCreateForm
         ];
         $messages = [
             UserCreateForm::USER_NAME . ".required" => 'ユーザ名は必須項目です',
+            UserCreateForm::USER_NAME . ".unique" => '指定したユーザ名は利用できません',
             UserCreateForm::PASSWORD . ".required" => 'パスワードは必須項目です',
             UserCreateForm::PASSWORD . ".confirmed" => 'パスワード、パスワード(確認)の値が一致しません',
         ];
@@ -78,12 +80,13 @@ class UserCreateForm
     public function createUser(): User
     {
         $user = new User();
+        $name = $this->request->input(UserCreateForm::USER_NAME);
         $password = $this->request->input(UserCreateForm::PASSWORD);
         $hashedPassword = Hash::make($password);
         $user->fill([
-            'name' => $this->request->input(UserCreateForm::USER_NAME),
+            'name' => $name,
             'password' => $hashedPassword, 
-            'email' => '',
+            'email' => $name,   // TODO メールアドレス入力フォームを追加する or ユーザカラムから削除する
         ]);
         return $user;
     }
