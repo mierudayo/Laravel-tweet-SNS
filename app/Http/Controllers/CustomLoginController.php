@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Auth;
  * 
  * @author Y.Takeuchi
  */
-class LoginController extends Controller
+class CustomLoginController extends Controller
 {
     /**
      * ログインページを表示する
