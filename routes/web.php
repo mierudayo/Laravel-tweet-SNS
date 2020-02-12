@@ -17,7 +17,9 @@ Route::get('/', function () {
 
 Route::get('/users/create', 'UsersController@create');
 Route::post('/users', 'UsersController@store');
-Route::get('/login', 'CustomLoginController@show');
+Route::get('/login', 'CustomLoginController@show')
+    ->name('login');
 Route::post('/login', 'CustomLoginController@login');
 Route::get('/logout', 'CustomLoginController@logout');
-Route::get('/tweet/create', 'TweetsController@create');
+Route::get('/tweets/create', 'TweetsController@create')
+    ->middleware('auth');
