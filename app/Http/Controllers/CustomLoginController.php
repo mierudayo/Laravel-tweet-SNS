@@ -34,10 +34,14 @@ class CustomLoginController extends Controller
         $form->validator()->validate();
         $credentials = $form->authCredentials();
         if (Auth::attempt($credentials)) {
-            return redirect('/');
+            return redirect()->intended('/');
         }
         
-        return redirect('/login');
+        return redirect('/login')
+            ->withInput()
+            ->withErrors([
+                'error' => 'ログインに失敗しました'
+            ]);
     }
 
     /**
