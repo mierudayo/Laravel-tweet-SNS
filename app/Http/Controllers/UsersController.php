@@ -15,7 +15,9 @@ class UsersController extends Controller
 
     public function store(Request $request)
     {
-        $this->validate($request, UserCreateForm::validate());
+        $form = new UserCreateForm($request);
+        $form->validator()->validate();
+        //$this->validate($request, UserCreateForm::validationRules(), UserCreateForm::validationRules());
         return redirect('/');
     }
 }
