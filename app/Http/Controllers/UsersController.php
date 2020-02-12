@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\HtmlForm\UserCreateForm;
 use Illuminate\Http\Request;
 
 class UsersController extends Controller
@@ -14,6 +15,7 @@ class UsersController extends Controller
 
     public function store(Request $request)
     {
+        $this->validate($request, UserCreateForm::validate());
         return redirect('/');
     }
 }

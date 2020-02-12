@@ -6,11 +6,20 @@
   </head>
   <body>
     <h1>ユーザ登録</h1>
+    @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+    @endif
     <form method="POST" action="/users">
         @csrf
         <label>
             ユーザ名
-            <input name="user-name" type="text">
+            <input name="user-name" type="text" value="{{ old('user-name') }}">
         </label>
         <label>
             パスワード
