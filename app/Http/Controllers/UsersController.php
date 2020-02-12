@@ -17,7 +17,7 @@ class UsersController extends Controller
     {
         $form = new UserCreateForm($request);
         $form->validator()->validate();
-        //$this->validate($request, UserCreateForm::validationRules(), UserCreateForm::validationRules());
+        $form->createUser()->save();
         return redirect('/');
     }
 }

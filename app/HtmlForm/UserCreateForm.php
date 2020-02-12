@@ -2,7 +2,9 @@
 
 namespace App\HtmlForm;
 
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
 /**
@@ -65,5 +67,24 @@ class UserCreateForm
             UserCreateForm::PASSWORD . ".confirmed" => 'パスワード、パスワード(確認)の値が一致しません',
         ];
         return Validator::make($this->request->all(), $rules, $messages);
+    }
+
+    /**
+     * DBに登録するユーザデータを生成する
+     * 本メソッドはバリデーションチェックがなされた後に実行される想定である
+     *
+     * @return User 生成したユーザデータ 
+     */
+    public function createUser(): User
+    {
+        $user = new User();
+        $password = $this->request->input(UserCreateForm::PASSWORD);
+        $hashedPassword = Hash::make($password);
+        $user->fill([
+            'name' => $this->request->input(UserCreateForm::USER_NAME),
+            'password' => $hashedPassword, 
+            'email' => '',
+        ]);
+        return $user;
     }
 }
