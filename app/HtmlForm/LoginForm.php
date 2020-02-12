@@ -11,16 +11,43 @@ use Illuminate\Support\Facades\Validator;
  */
 class LoginForm
 {
+    /**
+     * Input name ユーザ名
+     * 
+     * @var [String]
+     */
     public const USER_NAME = 'user-name';
+    
+    /**
+     * Input name パスワード
+     * 
+     * @var [String]
+     */
     public const PASSWORD = 'password';
+    
+    /**
+     * リクエスト
+     *
+     * @var [Request]
+     */
     private $request;
 
+    /**
+     * コンストラクタ
+     *
+     * @param Request $request リクエスト
+     */
     public function __construct(Request $request)
     {
         $this->request = $request;
     }
 
-    public function validator()
+    /**
+     * バリデータを生成する
+     *
+     * @return \Illuminate\Contracts\Validation\Validator 生成したバリデータ
+     */
+    public function validator(): \Illuminate\Contracts\Validation\Validator
     {
         $rules = [
             UserCreateForm::USER_NAME => [
@@ -37,7 +64,12 @@ class LoginForm
         return Validator::make($this->request->all(), $rules, $messages);
     }
 
-    public function authCredentials()
+    /**
+     * Auth:attemptで使うクレデンシャルを生成する
+     *
+     * @return array 生成したクレデンシャル
+     */
+    public function authCredentials(): array
     {
         return [
             'name' => $this->request->input(UserCreateForm::USER_NAME),
