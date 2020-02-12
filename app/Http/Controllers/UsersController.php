@@ -35,6 +35,6 @@ class UsersController extends Controller
         $form = new UserCreateForm($request);
         $form->validator()->validate();
         $form->createUser()->save();
-        return redirect('/');
+        return redirect()->intended('/');
     }
 }
