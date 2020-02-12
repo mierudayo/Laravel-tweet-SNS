@@ -20,3 +20,4 @@ Route::post('/users', 'UsersController@store');
 Route::get('/login', 'CustomLoginController@show');
 Route::post('/login', 'CustomLoginController@login');
 Route::get('/logout', 'CustomLoginController@logout');
+Route::get('/tweet/create', 'TweetsController@create');
