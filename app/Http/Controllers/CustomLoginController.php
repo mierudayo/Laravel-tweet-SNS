@@ -39,4 +39,15 @@ class CustomLoginController extends Controller
         
         return redirect('/login');
     }
+
+    /**
+     * ログアウト処理を行う
+     *
+     * @param Request $request リクエスト
+     */
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        return redirect('/');
+    }
 }

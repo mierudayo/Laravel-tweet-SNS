@@ -19,3 +19,4 @@ Route::get('/users/create', 'UsersController@create');
 Route::post('/users', 'UsersController@store');
 Route::get('/login', 'CustomLoginController@show');
 Route::post('/login', 'CustomLoginController@login');
+Route::get('/logout', 'CustomLoginController@logout');
