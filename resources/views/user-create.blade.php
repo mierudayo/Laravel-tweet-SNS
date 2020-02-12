@@ -28,7 +28,7 @@
         
         <label>
             パスワード(確認)
-            <input name="password-confirm" type="password">
+            <input name="password_confirmation" type="password">
         </label>
         <input type="submit" value="ユーザ登録">
     </form>
