@@ -23,3 +23,5 @@ Route::post('/login', 'CustomLoginController@login');
 Route::get('/logout', 'CustomLoginController@logout');
 Route::get('/tweets/create', 'TweetsController@create')
     ->middleware('auth');
+Route::post('/tweets', 'TweetsController@store')
+    ->middleware('auth');
