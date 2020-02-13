@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\HtmlForm\TweetCreateForm;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * ツイートのコントローラ
@@ -26,6 +27,12 @@ class TweetsController extends Controller
     {
         $form = new TweetCreateForm($request);
         $form->validator()->validate();
+        $userId = Auth::id();
+        if (is_null($userId)) {
+            return redirect('/');
+        }
+
+        $form->createTweet($userId)->save();
         return redirect('/');
     }
 }
