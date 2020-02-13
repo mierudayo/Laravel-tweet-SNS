@@ -4,8 +4,6 @@ namespace App\HtmlForm;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Tweets;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
 
 /**
  * ツイート投稿フォーム
@@ -53,6 +51,7 @@ class TweetCreateForm
 
     /**
      * 入力内容からTweetsを生成する
+     * 本メソッドはバリデーションチェックがなされた後に呼ばれる想定である
      *
      * @param integer $userId ユーザID
      * @return Tweets 生成したTweets
@@ -65,7 +64,6 @@ class TweetCreateForm
             'content' => $content,
             'user_id' => $userId,
         ]);
-        Log::info($tweets);
         return $tweets;
     }
 }

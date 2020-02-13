@@ -23,6 +23,11 @@ class TweetsController extends Controller
         return view('tweet-create');
     }
 
+    /**
+     * ツイート投稿を行う
+     *
+     * @param Request $request リクエスト
+     */
     public function store(Request $request)
     {
         $form = new TweetCreateForm($request);
