@@ -9,7 +9,7 @@
     
     <ul>
       @foreach ($latestTweets as $tweet)
-        <li> {{ $tweet->content }} [{{ $tweet->registDate }}]</li>
+        <li> {{ $tweet->content }} / {{ $tweet->author }} [{{ $tweet->registDate }}]</li>
       @endforeach
       
       @auth
@@ -23,7 +23,6 @@
 
     @guest
       <a href="/login">ログイン</a>
-    @endguest
-    
+    @endguest  
   </body>
 </html>

@@ -41,17 +41,17 @@ class LatestTweetsDAO
     /**
      * DBから取得したデータをTweetモデルに変換する
      *
-     * @param [Object] $origin 変換元
+     * @param [Tweets] $origin 変換元
      * @return TweetModel 変換結果
      */
-    private function toTweetModel(Object $origin): TweetModel
+    private function toTweetModel(Tweets $origin): TweetModel
     {
         $model = new TweetModel();
-        $model->content = (string) $origin->content;
+        $model->content = (String) $origin->content;
         $model->registDate = ($origin->created_at instanceof Carbon)
             ? $origin->created_at->isoFormat('YYYY/MM/DD hh:mm:ss')
             : "投稿日不明";
-        Log::info($origin);
+        $model->author = (String) $origin->user->name;
         return $model;
     }
 }
