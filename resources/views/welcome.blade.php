@@ -11,14 +11,18 @@
       @foreach ($latestTweets as $tweet)
         <li> {{ $tweet->content }} [{{ $tweet->registDate }}]</li>
       @endforeach
+      
+      @auth
+        <li><a href='/tweets/create'>ツイートする</a></li>
+      @endauth
     </ul>
 
     @auth
-    <a href='/logout'>ログアウト</a>
+      <a href='/logout'>ログアウト</a>
     @endauth
 
     @guest
-    <a href="/login">ログイン</a>
+      <a href="/login">ログイン</a>
     @endguest
     
   </body>
