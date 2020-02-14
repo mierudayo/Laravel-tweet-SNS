@@ -13,7 +13,11 @@
 ```
 cd <本リポジトリをcloneした場所>
 
+# Windows環境の場合
+copy .env.example .env
+# Mac、Linuxの場合
 cp .env.example .env
+
 # .envを以下のように編集する
 # DB_CONNECTION = 使用するRDBMS、sqlite, mysql, pgsql, sqlsrv が指定可能
 # DB_HOST = データベースのホスト名
@@ -56,7 +60,11 @@ php artisan serve
 ```
 cd <本リポジトリをcloneした場所>
 
+# Windows環境の場合
+copy .env.example .env
+# Mac、Linuxの場合
 cp .env.example .env
+
 composer install
 
 # Windows環境の場合
