@@ -22,7 +22,7 @@
     @endauth
 
     @guest
-      <a href="/login">ログイン</a>
+      <a href="/login">ログイン</a>  /  <a href="/users/create">ユーザ登録</a>
     @endguest  
   </body>
 </html>
