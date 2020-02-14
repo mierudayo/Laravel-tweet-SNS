@@ -9,7 +9,7 @@
     
     <ul>
       @foreach ($latestTweets as $tweet)
-        <li> {{ $tweet->content }} </li>
+        <li> {{ $tweet->content }} [{{ $tweet->registDate }}]</li>
       @endforeach
     </ul>
 

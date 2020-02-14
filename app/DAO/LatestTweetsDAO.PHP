@@ -4,7 +4,9 @@ namespace App\DAO;
 
 use App\Model\TweetModel;
 use App\Tweets;
+use Carbon\Carbon;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Log;
 
 /**
  * 最新ツイートのDAO
@@ -46,6 +48,10 @@ class LatestTweetsDAO
     {
         $model = new TweetModel();
         $model->content = (string) $origin->content;
+        $model->registDate = ($origin->created_at instanceof Carbon)
+            ? $origin->created_at->isoFormat('YYYY/MM/DD hh:mm:ss')
+            : "投稿日不明";
+        Log::info($origin);
         return $model;
     }
 }
