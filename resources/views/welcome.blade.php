@@ -6,6 +6,13 @@
   </head>
   <body>
     <h1>ついもどき</h1>
+    
+    <ul>
+      @foreach ($latestTweets as $tweet)
+        <li> {{ $tweet->content }} </li>
+      @endforeach
+    </ul>
+
     @auth
     <a href='/logout'>ログアウト</a>
     @endauth
